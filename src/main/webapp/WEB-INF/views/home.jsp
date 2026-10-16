@@ -33,16 +33,10 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/contact">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
+                    <a class="nav-link" href="${pageContext.request.contextPath}/login">Login</a>
                 </li>
             </ul>
             <span class="navbar-text">
@@ -62,19 +56,35 @@
     </div>
 </nav>
 <div class="row p-3">
-<c:forEach var="c" items="${products}" >
 
-    <div class=" col-md-4">
-    <div class="card">
-        <div class="card-body">
-            <h5 class="card-title">${c}</h5>
-            <p class="card-text"> Mô tả sản phẩm</p>
-            <button class="btn btn-info"> Xem chi tiết</button>
-        </div>
-    </div>
+    <h2>商品一覧</h2>
+
+    <div class="row">
+        <c:forEach var="product" items="${products}">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <c:out value="${product.name}" />
+                        </h5>
+                        <img src="${pageContext.request.contextPath}${product.image}"
+                             alt="${product.name}"
+                             width="180">
+
+                        <p class="card-text">
+                            価格：
+                            ¥<c:out value="${product.price}" />
+                        </p>
+
+                        <a href="#" class="btn btn-dark">
+                            詳細を見る
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
     </div>
 
-</c:forEach>
     </div>
 
 <script

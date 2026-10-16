@@ -1,16 +1,30 @@
 package com.fashionstore.model;
 
+import jakarta.persistence.*;
+import org.springframework.lang.NonNull;
+
 import java.math.BigDecimal;
-
+@Entity
+@Table(name ="products")
 public class Product {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name ="name")
     private String name;
+    @Column(name ="price")
     private BigDecimal price;
+    @Column(name ="description")
     private String description;
+    @Column(name ="image")
     private String image;
 
     public Product() {
+    }
+
+    public Product(String name, BigDecimal price) {
+        this.name = name;
+        this.price = price;
     }
 
     public Product(int id, String name, BigDecimal price,

@@ -12,8 +12,8 @@
     />
 </head>
 <body>
-<form action="/login" method="post">
-<section class="vh-100" style="background-color: #508bfc;">
+<form action="${pageContext.request.contextPath}/login" method="post">
+<section class="vh-100" style="background-color: #b7d5ad;">
     <div class="container py-5 h-100">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
@@ -34,11 +34,11 @@
 
                         <!-- Checkbox -->
                         <div class="form-check d-flex justify-content-start mb-4">
-                            <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                            <input class="form-check-input" type="checkbox" value="" id="checkbox" />
                             <label class="form-check-label" for="form1Example3"> Remember password </label>
                         </div>
 
-                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit">Login</button>
+                        <button data-mdb-button-init data-mdb-ripple-init class="btn btn-lg btn-block" type="submit" style="background: #008001; color:white ">Login</button>
                     </div>
                 </div>
             </div>
