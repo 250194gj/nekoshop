@@ -1,5 +1,6 @@
 package com.fashionstore.config;
 
+import com.fashionstore.interceptor.AuthorizationInterceptor;
 import jakarta.persistence.EntityManagerFactory;
 
 import org.springframework.context.annotation.Bean;
@@ -18,6 +19,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -36,7 +38,34 @@ import java.util.Properties;
 @EnableJpaRepositories(basePackages = "com.fashionstore.repository")
 @EnableTransactionManagement
 public class WebConfig implements WebMvcConfigurer {
+    private final AuthorizationInterceptor authorizationInterceptor;
 
+    public WebConfig(
+            AuthorizationInterceptor authorizationInterceptor) {
+        this.authorizationInterceptor =
+                authorizationInterceptor;
+    }
+    // =========================
+    // authorizationInterceptor
+    // =========================
+
+    @Override
+    public void addInterceptors(
+            InterceptorRegistry registry) {
+
+        registry
+                .addInterceptor(authorizationInterceptor)
+                .addPathPatterns("/**")
+                .excludePathPatterns(
+                        "/login",
+                        "/logout",
+                        "/home",
+                        "/products/**",
+                        "/css/**",
+                        "/images/**",
+                        "/js/**"
+                );
+    }
 
     // =========================
     // THYMELEAF

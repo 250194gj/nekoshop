@@ -102,6 +102,15 @@
             <artifactId>mysql-connector-j</artifactId>
             <version>9.5.0</version>
         </dependency>
+        <!-- ============================== -->
+        <!-- VALIDATION -->
+        <!-- ============================== -->
+
+        <dependency>
+            <groupId>org.hibernate.validator</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>8.0.2.Final</version>
+        </dependency>
 
     </dependencies>
 
