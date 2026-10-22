@@ -9,6 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ProducRepository extends JpaRepository<Product,Integer> {
-public List<Product> findAllBy();
 
 }

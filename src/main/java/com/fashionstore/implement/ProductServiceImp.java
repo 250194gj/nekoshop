@@ -16,12 +16,13 @@ public class ProductServiceImp implements ProductService {
     public List<Product> findAll() {
         return producRepository.findAll();
     }
-
     @Override
     public Product findById(int id) {
-        return null;
-    }
 
+        return producRepository
+                .findById(id)
+                .orElse(null);
+    }
     @Override
     public void save(Product product) {
 

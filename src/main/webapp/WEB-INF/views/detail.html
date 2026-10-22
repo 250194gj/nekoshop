@@ -1,9 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -82,11 +78,11 @@
 
 <body>
 
-<!-- Thanh điều hướng -->
+<!-- navibar-->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
         <a class="navbar-brand"
-           href="${pageContext.request.contextPath}/">
+           th:href="@{/}">
             NekoShop
         </a>
 
@@ -104,7 +100,7 @@
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link active"
-                       href="${pageContext.request.contextPath}/">
+                       th:href="@{/}">
                         商品一覧
                     </a>
                 </li>
@@ -113,88 +109,40 @@
     </div>
 </nav>
 
-<main class="container py-4 py-md-5">
+<article class="card product-card shadow-sm">
 
-    <!-- Banner giới thiệu -->
-    <section class="hero mb-5">
-        <p class="text-uppercase text-secondary mb-2">
-            Everyday Fashion
+    <img th:src="@{${product.image}}"
+         th:alt="${product.name}"
+         class="product-image"
+         loading="lazy">
+
+    <div class="card-body d-flex flex-column">
+
+        <h3 class="product-name mb-2" th:text="${product.name}">
+            商品名
+        </h3>
+
+        <p class="product-description mb-3" th:text="${product.description}">
+            商品説明
         </p>
 
-        <h1 class="fw-bold">お気に入りを見つけよう。</h1>
-
-        <p class="mb-0 text-secondary">
-            毎日のコーディネートをもっと楽しく。
+        <p class="product-price mb-3" th:text="|¥${product.price}|">
+            ¥0
         </p>
-    </section>
+<div class="d-flex justify-content-center gap-2">
 
-    <!-- Tiêu đề danh sách -->
-    <div class="d-flex justify-content-between
-                align-items-center mb-4">
-        <div>
-            <h2 class="fw-bold mb-1">商品一覧</h2>
-            <p class="text-secondary mb-0">
-                お気に入りのアイテムを見つけましょう。
-            </p>
-        </div>
-
-        <span class="badge text-bg-dark">
-            <c:out value="${products.size()}" /> items
-        </span>
+        <a th:href="@{/products/{id}(id = ${product.id})}"
+           class="btn btn-outline-dark mt-auto">
+            カートに入れる
+        </a>
+        <a th:href="@{/products/{id}(id = ${product.id})}"
+           class="btn btn-outline-dark mt-auto" >
+           すぐ買う
+        </a>
     </div>
-
-    <!-- Danh sách sản phẩm -->
-    <div class="row g-3 g-md-4">
-
-        <c:forEach var="product" items="${products}">
-            <div class="col-6 col-md-4 col-lg-3">
-
-                <article class="card product-card shadow-sm">
-
-                    <img
-                            src="${pageContext.request.contextPath}${product.image}"
-                            alt="${product.name}"
-                            class="product-image"
-                            loading="lazy">
-
-                    <div class="card-body d-flex flex-column">
-
-                        <h3 class="product-name mb-2">
-                            <c:out value="${product.name}" />
-                        </h3>
-
-                        <p class="product-description mb-3">
-                            <c:out value="${product.description}" />
-                        </p>
-
-                        <p class="product-price mb-3">
-                            ¥<c:out value="${product.price}" />
-                        </p>
-
-                        <a href="#"
-                           class="btn btn-outline-dark mt-auto">
-                            詳細を見る
-                        </a>
-
-                    </div>
-                </article>
-
-            </div>
-        </c:forEach>
-
     </div>
+</article>
 
-    <!-- Trường hợp chưa có sản phẩm -->
-    <c:if test="${empty products}">
-        <div class="text-center py-5">
-            <h3>商品がありません。</h3>
-            <p class="text-secondary">
-                現在、表示できる商品はありません。
-            </p>
-        </div>
-    </c:if>
-
-</main>
 
 <footer class="bg-dark text-white text-center py-4 mt-5">
     <small>&copy; NekoShop — Fashion for everyday.</small>
