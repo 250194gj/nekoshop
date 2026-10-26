@@ -18,6 +18,7 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -29,6 +30,7 @@ import org.thymeleaf.spring6.view.ThymeleafViewResolver;
 import org.thymeleaf.templatemode.TemplateMode;
 
 import javax.sql.DataSource;
+import java.nio.file.Path;
 import java.util.Properties;
 
 
@@ -136,6 +138,19 @@ public class WebConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/js/**")
                 .addResourceLocations("/js/");
+        Path uploadDir = Path.of(
+                System.getProperty("user.home"),
+                "nekoshop-uploads",
+                "products"
+        );
+
+        String uploadLocation = uploadDir.toUri().toString();
+        if (!uploadLocation.endsWith("/")) {
+            uploadLocation += "/";
+        }
+
+        registry.addResourceHandler("/uploads/**")
+                .addResourceLocations(uploadLocation);
     }
 
 
@@ -224,5 +239,9 @@ public class WebConfig implements WebMvcConfigurer {
         return new JpaTransactionManager(
                 entityManagerFactory
         );
+    }
+    @Bean
+    public StandardServletMultipartResolver multipartResolver() {
+        return new StandardServletMultipartResolver();
     }
 }

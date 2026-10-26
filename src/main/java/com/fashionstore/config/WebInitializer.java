@@ -1,5 +1,7 @@
 package com.fashionstore.config;
 
+import jakarta.servlet.MultipartConfigElement;
+import jakarta.servlet.ServletRegistration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -17,4 +19,15 @@ public class WebInitializer extends AbstractAnnotationConfigDispatcherServletIni
     protected String[] getServletMappings() {
         return new String[]{"/"};
     }
+    @Override
+    protected void customizeRegistration(ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(
+                new MultipartConfigElement(
+                        System.getProperty("java.io.tmpdir"),
+                        5L * 1024 * 1024,
+                        6L * 1024 * 1024,
+                        0
+                )
+        );
+}
 }

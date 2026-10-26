@@ -14,7 +14,8 @@
 
   <form th:action="@{/staff/product/add}"
         th:object="${product}"
-        method="post">
+        method="post"
+  enctype="multipart/form-data">
 
     <div class="mb-3">
       <label for="name" class="form-label">商品名</label>
@@ -35,10 +36,12 @@
     </div>
 
     <div class="mb-3">
-      <label for="image" class="form-label">画像パス</label>
-      <input id="image" type="text" class="form-control"
-             th:field="*{image}"
-             placeholder="/images/products/shirt.jpg">
+      <label for="imageFile">写真</label>
+      <input
+              type="file"
+              id="imageFile"
+              name="imageFile"
+              accept=".jpg,.jpeg,.png,.gif">
     </div>
 
     <button type="submit" class="btn btn-dark">保存する</button>
