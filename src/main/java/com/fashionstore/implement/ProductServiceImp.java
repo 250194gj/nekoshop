@@ -25,11 +25,13 @@ public class ProductServiceImp implements ProductService {
     }
     @Override
     public void save(Product product) {
+producRepository.save(product);
 
     }
 
     @Override
     public void deleteById(int id) {
+        producRepository.deleteById(id);
 
     }
 

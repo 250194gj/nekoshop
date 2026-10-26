@@ -112,6 +112,16 @@
             <version>8.0.2.Final</version>
         </dependency>
 
+        <!-- ============================== -->
+        <!-- Bucket4j -->
+        <!-- ============================== -->
+
+        <dependency>
+            <groupId>com.bucket4j</groupId>
+            <artifactId>bucket4j_jdk17-core</artifactId>
+            <version>8.21.0</version>
+        </dependency>
+
     </dependencies>
 
 

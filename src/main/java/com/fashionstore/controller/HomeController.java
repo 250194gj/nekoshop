@@ -1,9 +1,13 @@
 package com.fashionstore.controller;
 import com.fashionstore.implement.ProductServiceImp;
+import com.fashionstore.model.Product;
 import com.fashionstore.service.ProductService;
+import com.mysql.cj.x.protobuf.MysqlxDatatypes;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -30,5 +34,12 @@ public class HomeController {
         modelAndView.addObject("product",productService.findById(id));
         return modelAndView;
     }
+    @GetMapping("/")
+    public String index() {
+        return "redirect:/home";
+    }
+
+
+
 
 }
