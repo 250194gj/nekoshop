@@ -35,7 +35,7 @@ public class AuthorizationInterceptor implements HandlerInterceptor {
         // =========================
         // ADMIN & STAFF
         // =========================
-        if (uri.startsWith("/Staff")){
+        if (uri.startsWith("/staff")){
             if (role == Role.ADMIN || role == Role.STAFF) {
                 return true;
             }

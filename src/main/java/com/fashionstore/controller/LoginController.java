@@ -22,7 +22,7 @@ public class LoginController {
     private final RateLimitService rateLimitService;
     public LoginController(UserService userService , RateLimitService rateLimitService) {
         this.userService = userService;
-        this.rateLimitService = new RateLimitService();
+        this.rateLimitService = rateLimitService;
     }
 
     @GetMapping("/login")

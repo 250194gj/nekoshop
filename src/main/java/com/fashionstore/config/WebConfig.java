@@ -138,12 +138,12 @@ public class WebConfig implements WebMvcConfigurer {
         registry
                 .addResourceHandler("/js/**")
                 .addResourceLocations("/js/");
+
         Path uploadDir = Path.of(
                 System.getProperty("user.home"),
                 "nekoshop-uploads",
                 "products"
         );
-
         String uploadLocation = uploadDir.toUri().toString();
         if (!uploadLocation.endsWith("/")) {
             uploadLocation += "/";
