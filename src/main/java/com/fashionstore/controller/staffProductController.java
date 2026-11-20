@@ -4,11 +4,7 @@ import com.fashionstore.model.Product;
 import com.fashionstore.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -36,7 +32,7 @@ public class staffProductController {
         return "staff/addProduct";
     }
 
-    @GetMapping("/staff/products/delete/{id}")
+    @PostMapping("/staff/products/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id) {
         productService.deleteById(id);
         return "redirect:/home";

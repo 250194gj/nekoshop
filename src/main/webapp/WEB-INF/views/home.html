@@ -111,10 +111,12 @@
                        class="btn btn-outline-dark mt-auto">
                         詳細を見る
                     </a>
-                    <a th:href="@{/staff/products/delete/{id}(id = ${product.id})}"
-                       class="btn btn-outline-dark mt-auto">
-                        削除
-                    </a>
+                    <input type="hidden" th:value="${csrfToken}" name="_csrf">
+
+                    <form  th:action="@{/staff/products/delete/{id}(id = ${product.id})}" method="post" class=" mt-auto">
+                    <input type="submit" value="削除" class="btn btn-outline-dark">
+                    </form>
+
 
                 </div>
             </article>
